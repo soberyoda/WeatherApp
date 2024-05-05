@@ -16,5 +16,4 @@ public class WeatherAppApplication {
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
-
 }
