@@ -5,7 +5,9 @@ import java.util.*;
 
 import org.application.weatherapp.model.WeatherData;
 import org.application.weatherapp.model.WeatherForecast;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,7 @@ public class WeatherController {
         return "Application is up";
     }
 
-    @GetMapping("/weather/forecast/{latitude}/{longitude}")
+    @GetMapping(value = "/weather/forecast/{latitude}/{longitude}", produces = "application/json")
     public List<WeatherForecast> getSevenDayWeatherForecast(@PathVariable("latitude") Double latitude,
                                                             @PathVariable("longitude") Double longitude){
 
@@ -79,6 +81,13 @@ public class WeatherController {
                 weatherForecasts.add(weatherForecast);
             }
         }
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON); // Set the Content-Type header to JSON
+
+        if (weatherForecasts.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "No weather forecasts available");
+        }
+
         return weatherForecasts;
     }
 
