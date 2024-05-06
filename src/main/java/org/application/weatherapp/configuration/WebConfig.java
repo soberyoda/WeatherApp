@@ -13,7 +13,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         System.out.println("CorsMappings are being applied...");
         registry.addMapping("/**")
-                .allowedOrigins("https://weatherappfrontend-gd5m.onrender.com")
+                .allowedOrigins("*")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("Content-Type", "Authorization", "X-Requested-With")
                 .allowCredentials(true)
