@@ -104,7 +104,7 @@ class WeatherControllerTest {
     }
 
     @Test
-    void testNoDataAvailable_ReturnsEmptyList(){
+    void testNoDataAvailable_ThrowsException() {
         // Arrange
         Double lat = 50.50;
         Double lon = 13.405;
@@ -115,11 +115,10 @@ class WeatherControllerTest {
 
         when(restTemplate.getForObject(anyString(), eq(WeatherData.class))).thenReturn(weatherData);
 
-        // Act
-        List<WeatherForecast> weatherForecasts = weatherController.getSevenDayWeatherForecast(lat, lon);
-
-        // Assert
-        assertNotNull(weatherForecasts);
-        assertTrue(weatherForecasts.isEmpty());
+        // Act & Assert
+        assertThrows(ResponseStatusException.class, () -> {
+            weatherController.getSevenDayWeatherForecast(lat, lon);
+        });
     }
+
 }
