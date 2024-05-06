@@ -68,7 +68,8 @@ public class WeatherController {
         if (dates != null) {
             for(int i = 0; i < dates.size(); i++){
                 double exposureTime = sunshineDurations.get(i);
-                double estimatedEnergy = solarPanelPower * exposureTime * panelEfficiency;
+                double estimatedEnergy = (solarPanelPower * exposureTime * panelEfficiency) / 3600;
+                estimatedEnergy = Math.round(estimatedEnergy * 100.0) / 100.0;
                 WeatherForecast weatherForecast = new WeatherForecast();
                 weatherForecast.setDate(dates.get(i));
                 weatherForecast.setWeatherCode(weatherCodes.get(i));

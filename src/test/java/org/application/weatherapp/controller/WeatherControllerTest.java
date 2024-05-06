@@ -56,7 +56,7 @@ class WeatherControllerTest {
         assertEquals(800, weatherForecasts.get(0).getWeatherCode());
         assertEquals(23.5, weatherForecasts.get(0).getMaxTemperature());
         assertEquals(10.4, weatherForecasts.get(0).getMinTemperature());
-        assertEquals(80.0*2.5*0.2, weatherForecasts.get(0).getEstimatedEnergy());
+        assertEquals((double) Math.round(((80.0 * 2.5 * 0.2)/3600) * 100) / 100, weatherForecasts.get(0).getEstimatedEnergy());
     }
 
     @Test
