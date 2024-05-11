@@ -2,7 +2,8 @@
 
 ### Project Description 
 Backend of an application used for predicting the weather for the next 7 days.
-Integrated with an external API  <a href = "https://open-meteo.com/">open-meteo</a>. 
+Integrated with an external API  <a href = "https://open-meteo.com/">open-meteo</a>. <br/> 
+<a href= "https://github.com/soberyoda/WeatherAppFrontend">FRONTEND REPOSITORY</a>
 
 The created endpoint returns data in JSON format: Date, weather code, minimum and maximum temperature during the day, as well as the estimated value of generated energy.
 #### Endpoint: 
